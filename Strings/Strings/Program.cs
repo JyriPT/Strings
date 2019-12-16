@@ -37,7 +37,7 @@ namespace Strings
                 }
                 else if (select == 3)
                 {
-                    
+                    countingL(phrase);
                 }
                 else if (select == 4)
                 {
@@ -73,6 +73,23 @@ namespace Strings
 
             Console.WriteLine($"Input: {input}");
             Console.WriteLine($"Output: {output}");
+        }
+
+        //L kirjainten laskenta
+        static void countingL(string input)
+        {
+            int count = 0;
+
+            foreach (char i in input)
+            {
+                if (i.ToString() == "l" || i.ToString() == "L")
+                {
+                    count++;
+                }
+            }
+
+            Console.WriteLine($"Input: {input}");
+            Console.WriteLine($"Output: String '{input}' contains {count} instances of the letter L.");
         }
     }
 }
