@@ -6,7 +6,6 @@ namespace Strings
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(5 / 2);
             //Kaikki tehtävät tehty yhteen, tehtävien tarkistus tehdään valikon kautta
             int select;
             string input;
@@ -99,55 +98,42 @@ namespace Strings
             string origInput = input.ToLower();
             int count = 0;
 
-            Console.WriteLine(origInput);
-
+            //
+            //ALERT
+            //THIS IS NOT WORKING
+            //
+            #region
             //Poistetaan syötteestä välimerkit
             foreach (char i in origInput)
             {
                 if (i.ToString() == " " || i.ToString() == "," || i.ToString() == ".")
                 {
-                    origInput.Remove(count, 1);
+                    origInput.Remove(count, 2);
                     count--;
                 }
 
                 count++;
             }
+            Console.WriteLine(origInput);
+            #endregion
 
-            //Luodaan uusi merkkijono, syöte takoperin
+            //Leikataan muokattu syöte puoliksi
+            int halfLength = origInput.Length / 2;
+            string firstHalf = origInput.Remove(halfLength);
+
+            //Luodaan uusi merkkijono, muokattu syöte takoperin ja leikattu puoliksi
             char[] process = origInput.ToCharArray();
             Array.Reverse(process);
-            string backwards = new string(process);
-
-            //HOW DO I MAKE THIS BIT WORK?
-            #region
-            //Verrataan merkkijonoja keskenään
-            int length = origInput.Length;
-            int countReverse = length;
-            int countTrue = 0;
-
-            for (int countMain = 0; countMain < length; countMain++)
-            {
-                //
-                //ALERT
-                //HOW THE FUCK EVEN
-                //
-                if (1 == 1)
-                {
-                    countTrue++;
-                }
-
-                countReverse--;
-            }
-            #endregion
+            string secondHalf = new string(process).Remove(halfLength);
 
             //Tulostetaan, onko lause palindromi vai ei
             Console.WriteLine($"Input: {input}");
-            if (countTrue == length)
+            if (firstHalf == secondHalf)
             {
                 Console.WriteLine($"Output: Your input ¨{input}¨ is a palindrome.");
+            } else {
+                Console.WriteLine($"Output: Your input ¨{input}¨ is not a palindrome");
             }
-
-            Console.WriteLine($"Output: Your input ¨{input}¨ is not a palindrome");
         }
     }
 }
