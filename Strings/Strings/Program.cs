@@ -6,6 +6,7 @@ namespace Strings
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(5 / 2);
             //Kaikki tehtävät tehty yhteen, tehtävien tarkistus tehdään valikon kautta
             int select;
             string input;
@@ -20,7 +21,7 @@ namespace Strings
             //Pyydetään käyttäjältä merkkijono käsiteltäväksi
             Console.WriteLine("Please input phrase to be processed:");
             Console.WriteLine();
-            phrase = Console.ReadLine();
+            phrase = Console.ReadLine().Trim();
 
             //Käsitellään edellä annettu arvo.
             //Jos mahdollista muuttaa int arvoksi, tarkistetaan mikä numero.
@@ -41,7 +42,7 @@ namespace Strings
                 }
                 else if (select == 4)
                 {
-                    
+                    isPalindrome(phrase);
                 }
                 else
                 {
@@ -90,6 +91,63 @@ namespace Strings
 
             Console.WriteLine($"Input: {input}");
             Console.WriteLine($"Output: String '{input}' contains {count} instances of the letter L.");
+        }
+
+        //Palindromi tarkistus
+        static void isPalindrome(string input)
+        {
+            string origInput = input.ToLower();
+            int count = 0;
+
+            Console.WriteLine(origInput);
+
+            //Poistetaan syötteestä välimerkit
+            foreach (char i in origInput)
+            {
+                if (i.ToString() == " " || i.ToString() == "," || i.ToString() == ".")
+                {
+                    origInput.Remove(count, 1);
+                    count--;
+                }
+
+                count++;
+            }
+
+            //Luodaan uusi merkkijono, syöte takoperin
+            char[] process = origInput.ToCharArray();
+            Array.Reverse(process);
+            string backwards = new string(process);
+
+            //HOW DO I MAKE THIS BIT WORK?
+            #region
+            //Verrataan merkkijonoja keskenään
+            int length = origInput.Length;
+            int countReverse = length;
+            int countTrue = 0;
+
+            for (int countMain = 0; countMain < length; countMain++)
+            {
+                //
+                //ALERT
+                //HOW THE FUCK EVEN
+                //
+                if (1 == 1)
+                {
+                    countTrue++;
+                }
+
+                countReverse--;
+            }
+            #endregion
+
+            //Tulostetaan, onko lause palindromi vai ei
+            Console.WriteLine($"Input: {input}");
+            if (countTrue == length)
+            {
+                Console.WriteLine($"Output: Your input ¨{input}¨ is a palindrome.");
+            }
+
+            Console.WriteLine($"Output: Your input ¨{input}¨ is not a palindrome");
         }
     }
 }
