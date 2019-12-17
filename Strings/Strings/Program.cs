@@ -96,26 +96,13 @@ namespace Strings
         static void isPalindrome(string input)
         {
             string origInput = input.ToLower();
-            int count = 0;
 
-            //
-            //ALERT
-            //THIS IS NOT WORKING
-            //
-            #region
             //Poistetaan syötteestä välimerkit
-            foreach (char i in origInput)
-            {
-                if (i.ToString() == " " || i.ToString() == "," || i.ToString() == ".")
-                {
-                    origInput.Remove(count, 2);
-                    count--;
-                }
-
-                count++;
-            }
-            Console.WriteLine(origInput);
-            #endregion
+            origInput = origInput.Replace(" ", string.Empty);
+            origInput = origInput.Replace(",", string.Empty);
+            origInput = origInput.Replace(".", string.Empty);
+            origInput = origInput.Replace("!", string.Empty);
+            origInput = origInput.Replace("?", string.Empty);
 
             //Leikataan muokattu syöte puoliksi
             int halfLength = origInput.Length / 2;
@@ -126,7 +113,8 @@ namespace Strings
             Array.Reverse(process);
             string secondHalf = new string(process).Remove(halfLength);
 
-            //Tulostetaan, onko lause palindromi vai ei
+            //Verrataan puolikkaita kekskenään, jos samat niin syöte oli palindromi
+            //Tulostetaan vastaus
             Console.WriteLine($"Input: {input}");
             if (firstHalf == secondHalf)
             {
